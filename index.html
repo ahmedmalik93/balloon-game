@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lil Muslims Game</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no">
+
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/bal1.png" />
+	<link rel="stylesheet" href="assets/bootstrap.min.css" media="all"/>
+	<link rel="stylesheet" href="assets/style.css" media="all"/>
+	<link rel="stylesheet" href="assets/font-awesome-4.6.3/font-awesome-4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Vast+Shadow" rel="stylesheet">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 
+</head>
+<body>
+	 
+		<div class="loadArea">
+			<img src="assets/images/loading.gif"  ><br>
+			<p><strong><span style="color:#800040;">L</span><span style="color:#339966;">o</span> <span style="color:#e68a00;">a</span> <span style="color:#3366cc;">d</span> <span style="color:#cc0000;">i</span> <span style="color:#009900;">n</span> <span style="color:#ff00bf;">g</span> ...</strong></p>
+		</div>
+	 
+	 
+ 	<div class="gameArea">
+
+	<div class="row">
+	<div class="gameMsgArea">
+		<div class="gameMsg"></div>
+	</div>
+
+	 <div style="position:absolute; height: 40px; line-height: 40px; color:#fff; top:10; left:10; background: #ff9900; width:200px; border-radius:5px;" >
+				<p style="color:#fff; font-size: 18px; text-align: center;" >Score <span class="scoreBoard">0</span>
+
+				</p>
+
+		</div>
+
+		 <div class="turnsArea" style="position:absolute; height: 40px; line-height: 40px; color:#fff; top:10; right:0; background: #ff9900; width:200px; border-radius:5px;" >
+				<p style="color:#fff; font-size: 18px; text-align: center;" >High Score <span class="turnsBoard">150</span></p>
+ 
+		</div>
+
+		<div class="musicArea" style="cursor:pointer; position:absolute; height: 40px; line-height: 40px; color:#fff; top:40px; right:0; background: #339933; width:40px; border-radius:5px; border-radius: 100px" >
+			 
+
+				<p style="color:#fff; font-size: 18px; text-align: center;" class="musicIcon"><i class="fa fa-volume-up"></i></p>
+		</div>
+	</div>
+ 
+ 		
+		<canvas id="c"></canvas>
+	 
+
+
+
+	 
+	<img src="balloons/1.png" class="balImages" data="1" id="bal1">
+	<img src="balloons/2.png" class="balImages" id="bal2">
+	<img src="balloons/3.png" class="balImages" id="bal3">
+	<img src="balloons/4.png" class="balImages" id="bal4">
+	<img src="balloons/5.png" class="balImages" id="bal5">
+	<img src="balloons/6.png" class="balImages" id="bal6">
+	<img src="balloons/7.png" class="balImages" id="bal7">
+	<img src="balloons/8.png" class="balImages" id="bal8">
+	<img src="balloons/9.png" class="balImages" id="bal9">
+	<img src="balloons/10.png" class="balImages" id="bal10">
+	<img src="balloons/11.png" class="balImages" id="bal11">
+	<img src="balloons/12.png" class="balImages" id="bal12">
+	<img src="balloons/13.png" class="balImages" id="bal13">
+	<img src="balloons/14.png" class="balImages" id="bal14">
+	<img src="balloons/15.png" class="balImages" id="bal15">
+	<img src="balloons/16.png" class="balImages" id="bal16">
+	<img src="balloons/17.png" class="balImages" id="bal17">
+	<img src="balloons/18.png" class="balImages" id="bal18">
+	<img src="balloons/19.png" class="balImages" id="bal19">
+	<img src="balloons/20.png" class="balImages" id="bal20">
+	<img src="balloons/21.png" class="balImages" id="bal21">
+	<img src="balloons/22.png" class="balImages" id="bal22">
+	<img src="balloons/23.png" class="balImages" id="bal23">
+	<img src="balloons/24.png" class="balImages" id="bal24">
+	<img src="balloons/25.png" class="balImages" id="bal25">
+	<img src="balloons/26.png" class="balImages" id="bal26">
+	<img src="balloons/27.png" class="balImages" id="bal27">
+	<img src="balloons/28.png" class="balImages" id="bal28">
+
+	
+
+</div>
+	<script type="text/javascript">
+		var dialog = 0;
+		var music = 0;
+		var audio = new Audio('sounds/background.mp3'); 
+		//$('.myAudio').play();
+		$(document).ready(function(){
+
+
+
+
+			$(".gameArea").fadeIn("");
+
+			$(".loadArea").css("display", "none");
+			$("#myModal").modal("show");
+
+			$(".musicArea").click(function(){
+				if(music == 0){
+					$(".musicArea").css("background", "#cc3300");
+					$(".musicIcon").html("<i class='fa fa-volume-off'></i>");
+					music = 1;
+					audio.pause();
+				}else{
+					$(".musicArea").css("background", "#339933");
+					$(".musicIcon").html("<i class='fa fa-volume-up'></i>");
+					 audio.play();
+					music = 0;
+				}
+			});
+
+			$(".strtBtn").click(function(){
+				dialog = 1;
+				 
+				 audio.play();
+				 audio.volume = .2;
+				 audio.loop = true;
+
+				 $(".musicArea").fadeIn("");
+				 $("body").css("cursor", "url(assets/images/aim.png) 45 45, auto");
+				 $("canvas").css("background", "url('assets/images/ba1.png')");
+				 $("canvas").css("background-size", "cover");
+				 $("canvas").css("background-repeat", "none");
+			});
+
+			$("canvas").click(function(){
+				if(dialog == 0){
+					$("#myModal").modal("show");
+				}
+			});
+
+		 
+
+			$(".exitBtn").click(function(){
+				window.top.close();
+			});
+
+
+		});
+	</script>
+ 
+
+ 
+	<script src="assets/js/can.js"></script>
+
+
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header" style="position: relative; background: #006699;">
+		      	<img src="assets/images/bal1.png" style="position: absolute; height: 100px; width:100px;">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title text-center" style="color:#fff;">Lil Muslims Game</h4>
+		      </div>
+		      <div class="modal-body text-center">
+		        <button class="btn btn-success strtBtn" onclick="fetchBalloons()" data-dismiss="modal">Start New Game</button><br>
+		     	<button style="margin-top: 10px; width:130px;" class="btn btn-primary exitBtn"   data-dismiss="modal">Exit</button>
+
+		      </div>
+		      <div class="modal-footer">
+		       <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+		       Powered by Digital MedieXpert 2018
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+
+		<!-- Modal -->
+		<div id="myModal2" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header" style="position: relative; background: #006699;">
+		      	<img src="assets/images/bal1.png" style="position: absolute; height: 100px; width:100px;">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title text-center" style="color:#fff;">Game Over</h4>
+		      </div> 
+		      <div class="modal-body text-center">
+		      	<h3>Your Score <span class="scoreBoard2"></span></h3><br>
+		        <button class="btn btn-success" onClick="location.href=location.href" data-dismiss="modal">Main Menu</button>
+		      </div>
+		      <div class="modal-footer">
+		       <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+		       Powered by Digital MedieXpert 2018
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+<script type="text/javascript" src="assets/js/responsive.min,js"></script>
+</body>
+</html>
